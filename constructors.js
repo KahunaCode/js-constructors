@@ -19,6 +19,19 @@
    * @return {string} details containing all of the spells information.
    */
 
+function Spell(name, cost, description){
+  this.name = name;
+  this.cost = cost;
+  this.description = description;
+}
+
+Spell.prototype.getDetails = function(){
+  var details = this.name+" "+this.cost+" "+this.description;
+  return details;
+};
+
+
+
 /**
  * A spell that deals damage.
  * We want to keep this code DRY (Don't Repeat Yourself).
@@ -43,6 +56,18 @@
  * @property {number} damage
  * @property {string} description
  */
+function DamageSpell(name, cost, damage, description){
+  this.damage = damage;
+
+  Spell.call(this, name, cost, description);
+}
+
+DamageSpell.prototype = Object.create(Spell.prototype, {
+  constructor: DamageSpell
+});
+
+
+
 
 /**
  * Now that you've created some spells, let's create
