@@ -165,20 +165,12 @@ Spellcaster.prototype.spendMana = function(cost){
 
 Spellcaster.prototype.invoke = function(spell, target){
 
-  if (!(spell instanceof DamageSpell) || !(spell instanceof Spell)){
-    return false;
-  }
-
-  // if (spell instanceof DamageSpell || spell instanceof Spell) {
-  //   return true;
-  // }
-  // else {
+  // if (!(spell instanceof DamageSpell) || !(spell instanceof Spell)){
   //   return false;
   // }
-
-  // if (this.mana >= spell.cost){
-  //   this.spendMana(spell.cost);
-  // }
+  if (spell instanceof Spell === false){
+    return false;
+  }
 
 
   if (spell instanceof DamageSpell){
@@ -187,18 +179,20 @@ Spellcaster.prototype.invoke = function(spell, target){
     }
   }
 
+  // if (spell instanceof DamageSpell) {
+
+  // }
+
   if (this.mana >= spell.cost){
-    this.spendMana(spell.cost);
+    this.mana -= spell.cost;
+    //this.spendMana(spell.cost);
     if (spell instanceof DamageSpell){
-      //this.inflictDamage(spell.damage);
-      target.health -= spell.damage;
+      target.inflictDamage(spell.damage);
     }
     return true;
   }
   else{
     return false;
   }
-
-
 
 };
