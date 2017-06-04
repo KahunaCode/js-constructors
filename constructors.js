@@ -26,7 +26,7 @@ function Spell(name, cost, description){
 }
 
 Spell.prototype.getDetails = function(){
-  var details = this.name+" "+this.cost+" "+this.description;
+  var details = this.name + " " + this.cost + " " + this.description;
   return details;
 };
 
@@ -178,6 +178,7 @@ Spellcaster.prototype.invoke = function(spell, target){
 
   if (this.mana >= spell.cost){
     this.mana -= spell.cost;
+    //this.spendMana(spell.cost);
     if (spell instanceof DamageSpell){
       target.inflictDamage(spell.damage);
     }
